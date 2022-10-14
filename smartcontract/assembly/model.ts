@@ -32,26 +32,22 @@ export class Sneaker {
     }
    
 
-
-
-    public increamentSold(): void {
+    public incrementSold(): void {
         this.sneakersSold = this.sneakersSold + 1;
-    }
-
-    public decreamentSneakeravailable(): void {
         this.availableSneakers = this.availableSneakers - 1;
     }
 
-    public oneStarRate(): void {
-        this.onestarRating = this.onestarRating + 1;
-    }
 
-    public twoStarRate(): void {
-        this.twostarRating = this.twostarRating + 1;
-    }
-
-    public threeStarRate(): void {
-        this.threestarRating = this.threestarRating + 1;
+    public addRate(rate: u16): void {
+        if(rate == 1){
+            this.onestarRating = this.onestarRating + 1;
+        }else if(rate == 2){
+            this.twostarRating = this.twostarRating + 1;
+        }else if(rate == 3){
+            this.threestarRating = this.threestarRating + 1;
+        }else {
+            return;
+        }
     }
 
     public addmoreSneaker(number: u32 = 1): void {
@@ -62,5 +58,7 @@ export class Sneaker {
 }
 
 export const sneakerStorage = new PersistentUnorderedMap<string, Sneaker>("LISTED_EVENTS");
+// keeps track of sneakers ids rated by a user
+export const sneakersRatedStorage = new PersistentUnorderedMap<string, string[]>("LISTED_EVENTS");
 
 
