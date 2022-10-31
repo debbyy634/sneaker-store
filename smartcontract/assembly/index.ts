@@ -74,6 +74,30 @@ export function getSneaker(id: string): Sneaker | null {
     sneakerStorage.set(sneaker.id, sneaker); 
   }
 
+  
+  export function editSneakers(id:string, brand:string, description: string, image:string): void{
+    const sneaker = getSneaker(id);
+    if(sneaker == null){
+      throw new Error("sneaker not found"); 
+    }
+    const newSneaker = new Sneaker();
+    newSneaker.brand = brand;
+    newSneaker.description = description;
+    newSneaker.image = image;
+
+    assert(sneaker.owner.toString() == context.sender.toString(),"You don't have permission to edit sneakers");
+    sneakerStorage.set(sneaker.id, newSneaker);
+  }
+
+  export function hideOrShowVisibility():void{
+    const sneaker = getSneaker(id);
+    if (sneaker == null) {
+      throw new Error("sneaker not found");
+    }
+    assert(sneaker.owner.toString() == context.sender.toString(),"You don't have permission to hide or show visibility");
+    sneaker.hideOrShowVisibility();
+    sneakerStorage.set(sneaker.id, sneaker); 
+  }
 
  /**
    * @dev allow users to rate sneaker one star
@@ -106,6 +130,7 @@ export function getSneaker(id: string): Sneaker | null {
     sneaker.twoStarRate(); 
     sneakerStorage.set(sneaker.id, sneaker); 
   }
+
 
 
   /**
