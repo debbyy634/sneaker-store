@@ -30,10 +30,10 @@ const Sneaker = ({
 	} = sneaker;
 
 
-	
+
 	const [ammount, setAmmount] = useState("");
 
-	
+
 
 	const triggerBuy = () => {
 		buy(id, price);
@@ -54,8 +54,8 @@ const Sneaker = ({
 	const triggerthreestar = () => {
 		threestar(id);
 	};
-	
-	
+
+
 
 	return (
 		<Col>
@@ -85,8 +85,8 @@ const Sneaker = ({
 
 					<Card.Title>Ratings</Card.Title>
 
-
-					<Badge bg="secondary" className="ms-auto">
+					<div className="justify-content-between">
+						<Badge bg="secondary" className="ms-auto">
 							one star {onestarRating}
 						</Badge>
 
@@ -97,9 +97,9 @@ const Sneaker = ({
 						<Badge bg="secondary" className="ms-auto">
 							three star {threestarRating}
 						</Badge>
-					
 
-					
+					</div>
+
 
 					{isOwner === true && (
 						<>
@@ -117,7 +117,7 @@ const Sneaker = ({
 								className={"mb-4"}
 								onClick={() => triggeraddSneakers()}
 							>
-							Add more Sneakers
+								Add more Sneakers
 							</Button>
 						</>
 					)}
@@ -134,7 +134,7 @@ const Sneaker = ({
 						</>
 					)}
 
-{isOwner !== true && (
+					{isOwner !== true && (
 						<>
 							<Button
 								variant="primary"
@@ -146,7 +146,7 @@ const Sneaker = ({
 						</>
 					)}
 
-{isOwner !== true  &&(
+					{isOwner !== true && (
 						<>
 							<Button
 								variant="primary"
@@ -158,9 +158,9 @@ const Sneaker = ({
 						</>
 					)}
 
-					
 
-					{isOwner !== true && availableSneakers > 0  && (
+
+					{isOwner !== true && availableSneakers > 0 && (
 						<Button
 							variant="outline-dark"
 							onClick={triggerBuy}
@@ -168,7 +168,7 @@ const Sneaker = ({
 						>
 							Buy for {utils.format.formatNearAmount(price)} NEAR
 						</Button>
-					
+
 					)}
 
 

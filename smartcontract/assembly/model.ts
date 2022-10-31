@@ -9,6 +9,7 @@ export class Sneaker {
     description: string;
     price: u128;
     owner: string;
+    isSneakerAvailable: boolean;
     availableSneakers: u32;
     sneakersSold: u32;
     onestarRating: u32;
@@ -24,6 +25,7 @@ export class Sneaker {
         sneaker.price = payload.price;
         sneaker.owner = context.sender;
         sneaker.availableSneakers = payload.availableSneakers;
+        sneaker.isSneakerAvailable = true;
         sneaker.sneakersSold = 0;
         sneaker.onestarRating = 0;
         sneaker.twostarRating = 0;
@@ -56,6 +58,10 @@ export class Sneaker {
 
     public addmoreSneaker(number: u32 = 1): void {
         this.availableSneakers = this.availableSneakers + number;
+    }
+
+    public hideOrShowVisibility():void{
+        this.isSneakerAvailable = !this.isSneakerAvailable;
     }
 
 
